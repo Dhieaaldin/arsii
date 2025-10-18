@@ -1,24 +1,54 @@
+<!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <title>ARSII WebAR Social</title>
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
+  <style>
+    body { margin:0; overflow:hidden; font-family: 'Minecraft', monospace; }
+    #social-buttons {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+    .btn {
+      background: #1a73e8;
+      color: white;
+      font-size: 18px;
+      padding: 12px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 2px solid #fff;
+      cursor: pointer;
+      font-family: 'Minecraft', monospace;
+      text-shadow: 2px 2px 0px #000;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: #145ab4;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
-<body style="margin:0; overflow:hidden;">
+<body>
   <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix;">
-    <a-assets>
-      <a-asset-item id="steve" src="steve.glb"></a-asset-item>
-    </a-assets>
-
     <!-- ARSII logo marker -->
     <a-marker type="pattern" url="pattern-marker.patt">
-      <a-entity gltf-model="#steve" scale="0.5 0.5 0.5" animation-mixer></a-entity>
+      <!-- Particle animation -->
+      <a-entity particle-system="preset: sparks; particleCount: 100; color: #00ff00, #ffff00, #ffffff; size: 0.05"></a-entity>
     </a-marker>
 
     <a-entity camera></a-entity>
   </a-scene>
 
-  <div style="position:fixed;bottom:20px;width:100%;text-align:center;">
-    <button onclick="window.open('https://instagram.com/arsii_club','_blank')">Follow ARSII</button>
+  <!-- Social Media Buttons -->
+  <div id="social-buttons">
+    <button class="btn" onclick="window.open('https://instagram.com/arsii_club','_blank')">Instagram</button>
+    <button class="btn" onclick="window.open('https://facebook.com/arsii_club','_blank')">Facebook</button>
+    <button class="btn" onclick="window.open('https://discord.com/invite/arsii','_blank')">Discord</button>
   </div>
 </body>
 </html>
