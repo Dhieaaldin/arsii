@@ -2,53 +2,53 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>ARSII WebAR Social</title>
+  <title>ARSII WebAR 3D Buttons</title>
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
   <style>
-    body { margin:0; overflow:hidden; font-family: 'Minecraft', monospace; }
-    #social-buttons {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      z-index: 10;
-    }
-    .btn {
-      background: #1a73e8;
-      color: white;
-      font-size: 18px;
-      padding: 12px 20px;
-      margin: 5px;
-      border-radius: 8px;
-      border: 2px solid #fff;
-      cursor: pointer;
-      font-family: 'Minecraft', monospace;
-      text-shadow: 2px 2px 0px #000;
-      transition: 0.2s;
-    }
-    .btn:hover {
-      background: #145ab4;
-      transform: translateY(-2px);
-    }
+    body { margin:0; overflow:hidden; }
   </style>
 </head>
 <body>
-  <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix;">
-    <!-- ARSII logo marker -->
-    <a-marker type="pattern" url="pattern-marker.patt">
-      <!-- Particle animation -->
-      <a-entity particle-system="preset: sparks; particleCount: 100; color: #00ff00, #ffff00, #ffffff; size: 0.05"></a-entity>
-    </a-marker>
 
-    <a-entity camera></a-entity>
-  </a-scene>
+<a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix;">
 
-  <!-- Social Media Buttons -->
-  <div id="social-buttons">
-    <button class="btn" onclick="window.open('https://instagram.com/arsii_club','_blank')">Instagram</button>
-    <button class="btn" onclick="window.open('https://facebook.com/arsii_club','_blank')">Facebook</button>
-    <button class="btn" onclick="window.open('https://discord.com/invite/arsii','_blank')">Discord</button>
-  </div>
+  <!-- ARSII logo marker -->
+  <a-marker type="pattern" url="pattern-marker.patt">
+
+    <!-- Particle effect -->
+    <a-entity particle-system="preset: sparks; particleCount: 120; color: #00ff00, #ffff00, #ffffff; size: 0.05; velocitySpread: 1"></a-entity>
+
+    <!-- Minecraft-style 3D buttons floating in semicircle -->
+    <a-box id="instagram-btn" src="minecraft_block.png" depth="0.2" height="0.2" width="0.2" position="-0.4 0.3 0">
+      <a-animation attribute="position" dur="1200" direction="alternate" repeat="indefinite" to="-0.4 0.35 0"></a-animation>
+    </a-box>
+
+    <a-box id="facebook-btn" src="minecraft_block.png" depth="0.2" height="0.2" width="0.2" position="0 0.3 0">
+      <a-animation attribute="position" dur="1200" direction="alternate" repeat="indefinite" to="0 0.35 0"></a-animation>
+    </a-box>
+
+    <a-box id="discord-btn" src="minecraft_block.png" depth="0.2" height="0.2" width="0.2" position="0.4 0.3 0">
+      <a-animation attribute="position" dur="1200" direction="alternate" repeat="indefinite" to="0.4 0.35 0"></a-animation>
+    </a-box>
+
+  </a-marker>
+
+  <a-entity camera></a-entity>
+</a-scene>
+
+<script>
+  // Clickable 3D buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const instagram = document.querySelector('#instagram-btn');
+    const facebook = document.querySelector('#facebook-btn');
+    const discord = document.querySelector('#discord-btn');
+
+    instagram.addEventListener('click', () => window.open('https://instagram.com/arsii_club','_blank'));
+    facebook.addEventListener('click', () => window.open('https://facebook.com/arsii_club','_blank'));
+    discord.addEventListener('click', () => window.open('https://discord.com/invite/arsii','_blank'));
+  });
+</script>
+
 </body>
 </html>
